@@ -1,0 +1,10 @@
+{
+  "name": "gobarber",
+  "version": "1.0.0",
+  "description": "An app to virtualy connect barbers and clients ",
+  "main": "src/server.ts",
+  "repository": "https://github.com/oliveirahelena/gobarber",
+  "author": "Helena Oliveira",
+  "license": "MIT",
+  "private": true
+}
