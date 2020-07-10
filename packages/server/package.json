@@ -1,13 +1,12 @@
 {
-  "name": "@monorepo/server",
+  "name": "@gobarber/server",
   "version": "1.0.0",
   "main": "src/server.ts",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "build": "tsc",
     "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
-    "typeorm": "ts-node-dev ../../node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev ../..//node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
