@@ -2,9 +2,22 @@
   "name": "gobarber",
   "version": "1.0.0",
   "description": "An app to virtualy connect barbers and clients ",
-  "main": "src/server.ts",
   "repository": "https://github.com/oliveirahelena/gobarber",
   "author": "Helena Oliveira",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "server:dev": "yarn workspace @monorepo/server dev:server",
+    "server:build": "yarn workspace @monorepo/server build",
+    "server:typeorm": "yarn workspace @monorepo/server typeorm",
+    "web:start": "yarn workspace @monorepo/web start",
+    "web:build": "yarn workspace @monorepo/web build",
+    "web:test": "yarn workspace @monorepo/web test",
+    "web:eject": "yarn workspace @monorepo/web eject",
+    "dev:web": "concurrently --kill-others-on-fail \"yarn server:dev\" \"yarn web:start\""
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
 }
