@@ -4,8 +4,8 @@
 
 ### Prerequisites:
 - You need to have docker installed and then run: 
-
 docker run --name gostack_postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres 
+- Create the database gostack_gobarber
 
 ### Init the app
 After clone the repo, execute this steps:
