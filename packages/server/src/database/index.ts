@@ -5,7 +5,7 @@ createConnection({
   host: 'localhost',
   port: 5432,
   username: 'postgres',
-  password: 'docker',
+  password: '',
   database: 'gostack_gobarber',
   entities: ['./src/models/*.ts'],
   migrations: ['./src/database/migrations/*.ts'],
