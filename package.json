@@ -6,7 +6,10 @@
   "author": "Helena Oliveira",
   "license": "MIT",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": ["**/react-native", "**/react-native/**"]
+  },
   "scripts": {
     "server:dev": "yarn workspace @gobarber/server dev:server",
     "server:build": "yarn workspace @gobarber/server build",
@@ -15,7 +18,11 @@
     "web:build": "yarn workspace @gobarber/web build",
     "web:test": "yarn workspace @gobarber/web test",
     "web:eject": "yarn workspace @gobarber/web eject",
-    "dev:web": "concurrently --kill-others-on-fail \"yarn server:dev\" \"yarn web:start\""
+    "mobile:start": "yarn workspace @gobarber/mobile start",
+    "mobile:android": "yarn workspace @gobarber/mobile android",
+    "mobile:test": "yarn workspace @gobarber/mobile test",
+    "dev:web": "concurrently --kill-others-on-fail \"yarn server:dev\" \"yarn web:start\"",
+    "dev:mobile": "concurrently --kill-others-on-fail \"yarn server:dev\" \"yarn mobile:start\" \"yarn mobile:android\""
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
