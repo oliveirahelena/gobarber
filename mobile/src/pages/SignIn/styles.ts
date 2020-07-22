@@ -36,9 +36,9 @@ export const CreateAccountButton = styled.TouchableOpacity`
   border-color: #232129;
   padding: 16px 0 ${16 + getBottomSpace()}px;
 
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
 `;
 
 export const CreateAccountButtonText = styled.Text`
