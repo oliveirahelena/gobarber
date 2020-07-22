@@ -2,9 +2,16 @@
   "name": "gobarber",
   "version": "1.0.0",
   "description": "An app to virtualy connect barbers and clients",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "backend:dev": "yarn --cwd backend run dev:server",
+    "backend:typeorm": "yarn --cwd backend run typeorm",
+    "frontend:start": "yarn --cwd frontend run start",
+    "frontend:build": "yarn --cwd frontend run build",
+    "frontend:test": "yarn --cwd frontend run test",
+    "mobile:start": "yarn --cwd mobile run start",
+    "mobile:android": "yarn --cwd mobile run android",
+    "dev:web": "concurrently \"yarn run backend:dev\" \"yarn run frontend:start\"",
+    "dev:mobile": "concurrently \"yarn run backend:dev\" \"yarn run mobile:start\" \"yarn run mobile:android\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/oliveirahelena/gobarber/issues"
   },
-  "homepage": "https://github.com/oliveirahelena/gobarber#readme"
+  "homepage": "https://github.com/oliveirahelena/gobarber#readme",
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
 }
