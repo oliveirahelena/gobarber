@@ -1,0 +1,19 @@
+{
+  "name": "gobarber",
+  "version": "1.0.0",
+  "description": "An app to virtualy connect barbers and clients",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliveirahelena/gobarber.git"
+  },
+  "author": "Helena Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oliveirahelena/gobarber/issues"
+  },
+  "homepage": "https://github.com/oliveirahelena/gobarber#readme"
+}
