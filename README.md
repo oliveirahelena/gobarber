@@ -26,7 +26,10 @@ React Native: is an application in which the user has access to all service prov
 - An iOS or Android device or emulator
 
 ### Init the app
-After clone the repo, execute this steps:
+After clone the repo, execute this steps in the root of the project:
+
+Para a aplicação backend:
+  1. `cd backend`
   1. `yarn install`
-  2. `yarn server:typeorm migration:run`
-  3. `yarn dev:web`
+  2. `yarn typeorm migration:run`
+  3. `yarn dev:server`

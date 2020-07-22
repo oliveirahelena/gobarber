@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
 
@@ -10,6 +10,8 @@ interface InputProps extends TextInputProps {
 }
 
 const Input: React.FC<InputProps> = ({ name, icon, ...rest }) => {
+  const inputRef = useRef(null);
+
   return (
     <Container>
       <Icon name={icon} size={20} color="#666360" />
