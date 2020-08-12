@@ -15,9 +15,12 @@ coverage/
 # misc
 .DS_Store
 .env.local
+.env.example
 .env.development.local
 .env.test.local
 .env.production.local
+
+ormconfig.json
 
 npm-debug.log*
 yarn-debug.log*
