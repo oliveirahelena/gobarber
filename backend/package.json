@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/shared/infra/http/server.ts",
   "description": "An api to the app that virtualy connect barbers and clients ",
-  "repository": "https://github.com/juliofelipe/gobarber/backend",
+  "repository": "https://github.com/oliveirahelena/gobarber/backend",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
