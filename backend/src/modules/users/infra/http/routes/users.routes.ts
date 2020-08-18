@@ -9,9 +9,10 @@ import UsersController from '@modules/users/infra/http/controllers/UsersControll
 import UsersAvatarController from '@modules/users/infra/http/controllers/UsersAvavarController';
 
 const usersRouter = Router();
-const upload = multer(uploadConfig);
 const usersController = new UsersController();
 const usersAvatarController = new UsersAvatarController();
+
+const upload = multer(uploadConfig.multer);
 
 usersRouter.post(
   '/',
