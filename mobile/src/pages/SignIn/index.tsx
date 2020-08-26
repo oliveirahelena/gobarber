@@ -15,9 +15,9 @@ import * as Yup from 'yup';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth'
 
-import getValidationErrors from '../../utils/getValidationErrors';
+import getValidationErrors from '../../utils/getValidationErrors'
 
 import logoImg from '../../assets/logo.png';
 import Button from '../../components/Button';
@@ -42,7 +42,7 @@ const SignIn: React.FC = () => {
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
-  const { signIn } = useAuth();
+  const { signIn, user } = useAuth();
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -65,6 +65,7 @@ const SignIn: React.FC = () => {
           password: data.password,
         });
 
+        // history.push('/dashboard');
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
@@ -74,12 +75,10 @@ const SignIn: React.FC = () => {
           return;
         }
 
-        console.log(error);
-
         Alert.alert(
           'Erro na autenticação',
           'Ocorreu um erro ao fazer login, cheque as credenciais.'
-        );
+        )
       }
     },
     [signIn],
@@ -104,6 +103,7 @@ const SignIn: React.FC = () => {
             </View>
 
             <Form ref={formRef} onSubmit={handleSignIn}>
+
               <Input
                 autoCorrect={false}
                 autoCapitalize="none"
@@ -117,16 +117,18 @@ const SignIn: React.FC = () => {
                 }}
               />
               <Input
-                ref={passwordInputRef}
-                name="password"
-                icon="lock"
-                placeholder="Senha"
-                secureTextEntry
-                returnKeyType="send"
-                onSubmitEditing={() => {
-                  formRef.current?.submitForm();
-                }}
+              ref={passwordInputRef}
+              name="password"
+              icon="lock"
+              placeholder="Senha"
+              secureTextEntry
+              returnKeyType="send"
+              onSubmitEditing={() => {
+                formRef.current?.submitForm();
+              }}
               />
+
+
             </Form>
             <Button
                 onPress={() => {

@@ -1,4 +1,11 @@
-import React, { useState, useCallback, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+  forwardRef,
+} from 'react';
 import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
 
@@ -35,6 +42,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = ({ name, icon,
 
     setIsFilled(!!inputValueRef.current.value);
   }, []);
+
 
   useImperativeHandle(ref, () => ({
     focus() {

@@ -6,12 +6,11 @@ import {
   View,
   ScrollView,
   TextInput,
-  Alert
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
-
 import api from '../../services/api';
 
 import { Form } from '@unform/mobile';
@@ -20,6 +19,7 @@ import { FormHandles } from '@unform/core';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.png';
+
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
@@ -37,8 +37,8 @@ interface SignUpFormData {
 }
 
 const SignUp: React.FC = () => {
-  const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
+  const formRef = useRef<FormHandles>(null);
 
   const emailInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
@@ -62,31 +62,31 @@ const SignUp: React.FC = () => {
 
         await api.post('/users', data);
 
-        Alert.alert(
-          'Cadastro realizado!',
-          'Você já pode fazer seu logon no GoBarber!.'
-        );
+        Alert.alert (
+          'Cadastro realizado com sucesso!',
+          'Você já pode fazer ser logo no GoBarber.'
+        )
 
-        navigation.goBack();
+        navigation.goBack()
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
-
           formRef.current?.setErrors(errors);
 
           return;
         }
 
-        console.error(error);
+        console.log(error);
 
-        Alert.alert(
+        Alert.alert (
           'Erro no cadastro',
           'Ocorreu um erro ao fazer cadastro, tente novamente.'
-        );
+        )
       }
     },
     [navigation],
   );
+
 
   return (
     <>
@@ -108,14 +108,15 @@ const SignUp: React.FC = () => {
 
             <Form ref={formRef} onSubmit={handleSignUp}>
               <Input
+
                 autoCapitalize="words"
                 name="name"
                 icon="user"
                 placeholder="Nome"
-                returnKeyType="next"
                 onSubmitEditing={() => {
-                  emailInputRef.current?.focus();
-                }} />
+                  emailInputRef.current?.focus()
+                }}
+                />
               <Input
                 ref={emailInputRef}
                 keyboardType="email-address"
@@ -126,8 +127,9 @@ const SignUp: React.FC = () => {
                 placeholder="E-mail"
                 returnKeyType="next"
                 onSubmitEditing={() => {
-                  passwordInputRef.current?.focus();
-                }} />
+                  passwordInputRef.current?.focus()
+                }}
+                />
               <Input
                 ref={passwordInputRef}
                 secureTextEntry
@@ -136,16 +138,15 @@ const SignUp: React.FC = () => {
                 placeholder="Senha"
                 textContentType="newPassword"
                 returnKeyType="send"
-                onSubmitEditing={() => {
-                  formRef.current?.submitForm();
-                }} />
+                onSubmitEditing={() => formRef.current?.submitForm()}
+                />
             </Form>
             <Button
                 onPress={() => {
                   formRef.current?.submitForm();
                 }}
               >
-                Cadastrar
+                Entrar
               </Button>
           </Container>
         </ScrollView>
