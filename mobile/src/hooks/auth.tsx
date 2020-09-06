@@ -24,6 +24,7 @@ interface AuthContextData {
   loading: boolean;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
+  updateUser(user: User): Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -34,16 +35,16 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function loadStorageData(): Promise<void> {
-      const [token, user] = await AsyncStorage.multiGet(['@GoBarber:user','@GoBarber:token']);
+      const [token, user] = await AsyncStorage.multiGet(['@GoBarber:user', '@GoBarber:token']);
 
-        if (token[1] && user[1]) {
-          api.defaults.headers.authorization = `Bearer ${token[1]}`;
+      if (token[1] && user[1]) {
+        api.defaults.headers.authorization = `Bearer ${token[1]}`;
 
-          setData({ token: token[1], user: JSON.parse(user[1]) })
-        }
-
-        setLoading(false);
+        setData({ token: token[1], user: JSON.parse(user[1]) })
       }
+
+      setLoading(false);
+    }
     loadStorageData();
   }, [])
 
@@ -65,25 +66,37 @@ export const AuthProvider: React.FC = ({ children }) => {
     setData({ token, user });
   }, []);
 
-  const signOut = useCallback(async() => {
+  const signOut = useCallback(async () => {
     await AsyncStorage.multiRemove(['@GoBarber:user', '@GoBarber:token']);
 
     setData({} as AuthState);
   }, []);
 
+  const updateUser = useCallback(
+    async (user: User) => {
+      await AsyncStorage.setItem('@GoBarber:user', JSON.stringify(user));
+
+      setData({
+        token: data.token,
+        user,
+      });
+    },
+    [setData, data.token],
+  );
+
   return (
-    <AuthContext.Provider value={{ user: data.user, loading, signIn, signOut }}>
+    <AuthContext.Provider value={{ user: data.user, loading, signIn, signOut, updateUser}}>
       {children}
     </AuthContext.Provider>
   );
-};
-
-export function useAuth(): AuthContextData {
-  const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-
-  return context;
 }
+
+  export function useAuth(): AuthContextData {
+    const context = useContext(AuthContext);
+
+    if (!context) {
+      throw new Error('useAuth must be used within an AuthProvider');
+    }
+
+    return context;
+  }
